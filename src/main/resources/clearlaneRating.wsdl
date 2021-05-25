@@ -1,0 +1,153 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/">
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+            <s:element name="GetRating">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="RatingParam" type="tns:RatingEngineInput"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RatingEngineInput">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="RatingInput" type="tns:RatingInput"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="AccessorialInput" type="tns:ArrayOfAccessorialInput"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="CommodityInput" type="tns:ArrayOfCommodityInput"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RatingInput">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OriginCountry" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OriginCity" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OriginState" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OriginZip" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="DestinationCountry" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="DestinationCity" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="DestinationState" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="DestinationZip" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ShipmentTerms" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="PickupDate" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="PickupTime" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="PickupLocationCloseTime" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="LiabilityType" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="DeclaredValue" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Palletized" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Stackable" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ServiceLevelID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="WebTrakUserID" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfAccessorialInput">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="AccessorialInput" nillable="true" type="tns:AccessorialInput"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="AccessorialInput">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="AccessorialCode" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfCommodityInput">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="CommodityInput" nillable="true" type="tns:CommodityInput"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="CommodityInput">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="CommodityClass" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CommodityPieces" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="CommodityPieceType" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CommodityWeightPerPiece" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CommodityWeight" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CommodityLength" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CommodityWidth" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CommodityHeight" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="CommodityHazmat" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetRatingResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetRatingResult" type="tns:ArrayOfRatingOutput"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfRatingOutput">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RatingOutput" nillable="true" type="tns:RatingOutput"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RatingOutput">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ServiceLevelID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="DeliveryDate" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="DeliveryTime" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="StandardFreightCharge" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="StandardTotalRate" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="AccessorialOutput" type="tns:ArrayOfAccessorialOutput"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="TransitDays" type="s:int"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfAccessorialOutput">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="AccessorialOutput" nillable="true" type="tns:AccessorialOutput"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="AccessorialOutput">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="AccessorialCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="AccessorialDesc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="AccessorialCharge" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="GetRatingSoapIn">
+        <wsdl:part name="parameters" element="tns:GetRating"/>
+    </wsdl:message>
+    <wsdl:message name="GetRatingSoapOut">
+        <wsdl:part name="parameters" element="tns:GetRatingResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="GetRatingSoap">
+        <wsdl:operation name="GetRating">
+            <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Rating</wsdl:documentation>
+            <wsdl:input message="tns:GetRatingSoapIn"/>
+            <wsdl:output message="tns:GetRatingSoapOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetRatingSoap" type="tns:GetRatingSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetRating">
+            <soap:operation soapAction="http://tempuri.org/GetRating" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="GetRatingSoap12" type="tns:GetRatingSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetRating">
+            <soap12:operation soapAction="http://tempuri.org/GetRating" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GetRating">
+        <wsdl:port name="GetRatingSoap" binding="tns:GetRatingSoap">
+            <soap:address location="http://ssworldtrak.com/WTKServicesCLEARL/GetRating.asmx"/>
+        </wsdl:port>
+        <wsdl:port name="GetRatingSoap12" binding="tns:GetRatingSoap12">
+            <soap12:address location="http://ssworldtrak.com/WTKServicesCLEARL/GetRating.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
